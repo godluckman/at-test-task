@@ -22,7 +22,7 @@ export const getBalance = async (req: Request, res: Response) => {
     try {
         const sessionId = await redisClient.get('auth');
         if (!sessionId) {
-            res.status(401).send('Authentication required');
+            return res.status(401).send('Authentication required');
         }
 
         const accountInfoResponse = await fetch(`${Global.TRENDING_URL}/advertiserapi/payment/getinfo`, {
